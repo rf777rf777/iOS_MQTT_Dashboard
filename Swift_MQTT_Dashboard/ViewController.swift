@@ -9,58 +9,6 @@
 import UIKit
 import CocoaMQTT
 
-//在既有類別CALayer中新增"可同時增加陰影與圓角"的方法
-extension CALayer {
-    func addShadow(offset:(CGFloat,CGFloat) , opacity:Float ,  radius:CGFloat) {
-        self.shadowOffset = .init(width: offset.0, height: offset.1)
-        self.shadowOpacity = opacity
-        self.shadowRadius = radius
-        self.shadowColor = UIColor.black.cgColor
-        self.masksToBounds = false
-        
-        if cornerRadius != 0 {
-            addShadowWithRoundedCorners()
-        }
-    }
-    
-    func roundCorners(radius: CGFloat) {
-        self.cornerRadius = radius
-        
-        if shadowOpacity != 0 {
-            addShadowWithRoundedCorners()
-        }
-    }
-    
-    private func addShadowWithRoundedCorners() {
-        if let contents = self.contents {
-            
-            masksToBounds = false
-            sublayers?.filter{ $0.frame.equalTo(self.bounds) }
-                .forEach{ $0.roundCorners(radius: self.cornerRadius) }
-            
-            self.contents = nil
-            
-            if let sublayer = sublayers?.first,
-                sublayer.name == name {
-                
-                sublayer.removeFromSuperlayer()
-            }
-            
-            let contentLayer = CALayer()
-            contentLayer.name = name
-            contentLayer.contents = contents
-            contentLayer.frame = bounds
-            contentLayer.cornerRadius = cornerRadius
-            contentLayer.masksToBounds = true
-            
-            insertSublayer(contentLayer, at: 0)
-        }
-    }
-}
-
-
-
-
 class ViewController: UIViewController , UITextFieldDelegate {
     
     var mqtt: CocoaMQTT?
@@ -188,12 +136,19 @@ class ViewController: UIViewController , UITextFieldDelegate {
                 if let temperature = result.temperature , let humidity = result.humidity{
                     let date = Date()
                     let calendar = Calendar.current
-                    let hour = calendar.component(.hour, from: date)
-                    let minutes = calendar.component(.minute, from: date)
-                    let second = calendar.component(.second, from: date)
                     
-                    self.tempDataReceived.text = "\(hour):\(minutes):\(second) Received"
-                    self.humDataReceived.text = "\(hour):\(minutes):\(second) Received"
+                    //let hour = calendar.component(.hour, from: date)
+                    //let minutes = calendar.component(.minute, from: date)
+                    //let second = calendar.component(.second, from: date)
+                    
+                    let dateComponents =
+                        calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: date )
+                    
+                    self.tempDataReceived.text =
+                        "\(dateComponents.hour!):\(dateComponents.minute!):\(dateComponents.second!) Received"
+                    
+                    self.humDataReceived.text =
+                        "\(dateComponents.hour!):\(dateComponents.minute!):\(dateComponents.second!) Received"
                     
                     self.tempValueLabel.text = "\(temperature)"
                     self.humValueLabel.text = "\(humidity)"
@@ -202,5 +157,54 @@ class ViewController: UIViewController , UITextFieldDelegate {
         }
     }
   
+}
+
+//在既有類別CALayer中新增"可同時增加陰影與圓角"的方法
+extension CALayer {
+    func addShadow(offset:(CGFloat,CGFloat) , opacity:Float ,  radius:CGFloat) {
+        self.shadowOffset = .init(width: offset.0, height: offset.1)
+        self.shadowOpacity = opacity
+        self.shadowRadius = radius
+        self.shadowColor = UIColor.black.cgColor
+        self.masksToBounds = false
+        
+        if cornerRadius != 0 {
+            addShadowWithRoundedCorners()
+        }
+    }
+    
+    func roundCorners(radius: CGFloat) {
+        self.cornerRadius = radius
+        
+        if shadowOpacity != 0 {
+            addShadowWithRoundedCorners()
+        }
+    }
+    
+    private func addShadowWithRoundedCorners() {
+        if let contents = self.contents {
+            
+            masksToBounds = false
+            sublayers?.filter{ $0.frame.equalTo(self.bounds) }
+                .forEach{ $0.roundCorners(radius: self.cornerRadius) }
+            
+            self.contents = nil
+            
+            if let sublayer = sublayers?.first,
+                sublayer.name == name {
+                
+                sublayer.removeFromSuperlayer()
+            }
+            
+            let contentLayer = CALayer()
+            contentLayer.name = name
+            contentLayer.contents = contents
+            contentLayer.frame = bounds
+            contentLayer.cornerRadius = cornerRadius
+            contentLayer.masksToBounds = true
+            
+            insertSublayer(contentLayer, at: 0)
+        }
+    }
 }
 
