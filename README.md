@@ -2,7 +2,7 @@
 ![image](https://upload.cc/i1/2018/07/02/jQ7eMt.gif)
 ## :pencil2: 概述
 
-顯示溫濕度的iOS應用程式，本程式屬於微型物聯網(IoT)架構實驗的一環。
+顯示溫濕度的iOS應用程式，本程式屬於**微型物聯網(IoT)架構實驗**的一環。
 
 詳見系列文章: 
   + **[iOS x IoT (1) — Overview](https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/ios-x-iot-1-overview-add874221174)**
@@ -16,12 +16,9 @@
   + 使用 [CocoaMQTT](https://github.com/emqtt/CocoaMQTT)，接收從 MQTT Broker 傳來的溫濕度資料。
   + 使用 [Carthage](https://github.com/Carthage/Carthage)，當做**第三方套件管理工具**。
   + 注意：本範例需搭配 **MQTT Broker** 與 **Arduino 實體裝置**，方能正確顯示數值，否則數值永遠都是 **Ｎ/A**。
-  + 整體專案架構圖(含 Broker、Arduino)：
-
-  ![image](https://upload.cc/i1/2018/07/02/xYEaT5.png)
 
 ## :green_book: 安裝專案
-1. 本範例使用 [Carthage](https://github.com/Carthage/Carthage) 做套件管理，請先確認是否已安裝，若未安裝，建議使用 **Homebrew** 指令：
+1. 本範例使用 [Carthage](https://github.com/Carthage/Carthage) 做套件管理，請先確認是否已安裝，若未安裝，建議使用 [Homebrew](https://brew.sh/index_zh-tw) 指令：
 
         brew update
         brew install carthage
