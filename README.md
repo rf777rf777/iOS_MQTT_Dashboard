@@ -2,7 +2,7 @@
 ![image](https://upload.cc/i1/2018/07/02/jQ7eMt.gif)
 ## :pencil2: 概述
 
-顯示溫濕度的iOS應用程式，本程式屬於**微型物聯網(IoT)架構實驗**的一環。
+顯示溫濕度的 iOS 應用程式，本程式屬於**微型物聯網(IoT)架構實驗**的一環。
 
 詳見系列文章: 
   + **[iOS x IoT (1) — Overview](https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/ios-x-iot-1-overview-add874221174)**
