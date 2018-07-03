@@ -31,7 +31,7 @@
         carthage update 
     
    來安裝需要的 Packages。
-   ![image](https://upload.cc/i1/2018/07/03/oGcerp.png)
+![image](https://upload.cc/i1/2018/07/03/oGcerp.png)
 
 4. 連續出現三次密碼確認畫面，請輸入自己電腦的密碼：
    ![image](https://upload.cc/i1/2018/07/03/jCtLHc.png)
