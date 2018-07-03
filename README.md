@@ -28,9 +28,9 @@
 
 3. 打開終端機 Terminal，移動到專案資料夾底下(與 Cartfile 同層)，輸入：
   
-        carthage update 
-    
+        carthage update   
    來安裝需要的 Packages。
+
 ![image](https://upload.cc/i1/2018/07/03/oGcerp.png)
 
 4. 連續出現三次密碼確認畫面，請輸入自己電腦的密碼：
